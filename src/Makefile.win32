@@ -1,0 +1,27 @@
+COMPILER=cl
+LINK=link
+
+EXENAME=..\animals.exe
+INCLUDEDIR= -I . 
+#LIBRARIES=
+CFLAGS= /c /TP /EHsc /DWIN32 /MD /D_WIN32 /nologo /O2
+LDFLAGS=/nologo
+
+OBJS= Animal.obj \
+	IAnimalBehavior.obj \
+	Delfin.obj \
+	Gato.obj \
+	Pinguino.obj \
+	Cliente.obj \
+	main.obj 
+
+.cpp.obj:
+	$(COMPILER) $(CFLAGS) $(INCLUDEDIR) $<
+
+
+$(EXENAME) : $(OBJS)
+	$(LINK) $(LDFLAGS) /out:$@ $(OBJS) 
+
+clean:
+	del *.obj
+	del $(EXENAME)
